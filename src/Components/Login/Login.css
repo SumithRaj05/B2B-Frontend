@@ -1,0 +1,36 @@
+.login-form {
+    background-color: #303030;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: scroll;
+    color: white;
+}
+
+
+.login-input{
+    background-color: transparent;
+    color: white;
+    border: solid 1.8px;
+    border-color: transparent transparent black transparent;
+    transition: 0.5s;
+}
+
+
+.login-input:focus{
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border-color: transparent transparent white transparent;
+}
+
+.login-btn{
+    margin: 15px;
+}
+
+.signup-link{
+    text-align: right;
+}

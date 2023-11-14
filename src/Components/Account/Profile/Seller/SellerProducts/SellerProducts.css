@@ -1,0 +1,11 @@
+.add-card{
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.add-card:hover{
+    opacity: 1;
+}
