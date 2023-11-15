@@ -1,0 +1,35 @@
+.product-list {
+    border: 0px solid #111;
+    box-shadow: 2px 2px 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.total-amount {
+    border-top: 2px solid #000;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    margin-top: 10px;
+    width: min-content;
+    height: min-content;
+}
+
+.quantity-input {
+    width: 100px;
+    margin: 5px;
+}
+
+@media (max-width: 1000px) {
+    .product-list{
+        display: block;
+        margin: 30px;
+    }
+}

@@ -44,7 +44,7 @@ function ProductDetails() {
                         <li className="list-group-item">(Quantity:)</li>
                         <li className="list-group-item">(Price:)</li>
                     </ul>
-                    <Link to="https://www.africau.edu/images/default/sample.pdf" class="btn btn-primary" target="blank">View Product Catalogue</Link>
+                    <Link to="https://www.africau.edu/images/default/sample.pdf" className="btn btn-primary" target="blank">View Product Catalogue</Link>
                 </div>
             </div>
         </PageLayout>

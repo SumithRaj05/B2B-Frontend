@@ -1,9 +1,5 @@
-.nav-profile {
+.nav-item {
     margin-right: 30px;
-}
-
-body {
-    background-color: #d1d1d1;
 }
 
 .container {
@@ -12,4 +8,8 @@ body {
 
 .d-lg-none {
     margin: 10px;
+}
+
+.navbar {
+    background-color: #2b2b2b;
 }

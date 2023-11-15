@@ -1,3 +1,5 @@
+import './App.css'
+
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import Signup from './Components/Signup/Signup'
@@ -9,6 +11,9 @@ import ScrollToTop from './Components/ExtraComponents/ScrolltoTop'
 import AddProduct from './Components/Account/Profile/Seller/SellerProducts/AddProduct/AddProduct'
 import ProductDetails from './Components/Account/Profile/Seller/SellerProducts/ProductDetails/ProductDetails'
 import EditProduct from './Components/Account/Profile/Seller/SellerProducts/EditProduct/EditProduct'
+import ViewCart from './Components/Account/Cart/ViewCart/ViewCart'
+import BuyerProfile from './Components/Account/Profile/Buyer/BuyerProfile'
+import OrderDetails from './Components/Account/Profile/CommonComponents/OrderDetails/OrderDetails'
 
 function App() {
 
@@ -27,7 +32,10 @@ function App() {
         <Route path="/add_product" element={<AddProduct />} />
         <Route path="/product_details" element={<ProductDetails />} />
         <Route path="/edit_product" element={<EditProduct />} />
-        
+        <Route path="/buyer_profile" element={<BuyerProfile />} />
+        <Route path="/order_details" element={<OrderDetails />} />
+
+        <Route path="/view_cart" element={<ViewCart />} />
       </Routes>
     </>
   )

@@ -2,6 +2,7 @@ import './SellerProfile.css'
 
 import { Link } from 'react-router-dom'
 import { BsFillImageFill } from 'react-icons/bs'
+import { TbMoodEmpty } from "react-icons/tb";
 import PageLayout from '../../PageLayout/PageLayout'
 
 function Profile() {
@@ -83,6 +84,11 @@ function Profile() {
             <div className="col-md-12 mt-3 text-center">
                 <Link to="/products" className="btn btn-outline-primary">View All Products</Link>
             </div>
+
+            <h1 className="mb-4">Orders List</h1>
+
+            <h3><TbMoodEmpty size={50} />   No Orders placed yet...  <Link to="/dashboard">Start shopping now :)</Link></h3>
+
         </PageLayout>
     )
 }

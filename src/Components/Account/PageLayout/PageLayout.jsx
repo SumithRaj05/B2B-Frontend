@@ -3,6 +3,7 @@ import './PageLayout.css'
 import { CgProfile } from 'react-icons/cg'
 import { BiSearchAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import { FaCartPlus } from "react-icons/fa6";
 
 function PageLayout({ children }) {
     return (
@@ -25,17 +26,52 @@ function PageLayout({ children }) {
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to="/profile" className="nav-link nav-profile">
-                                    <CgProfile size={30} /><span class="d-lg-none">Profile</span>
+                                <Link to="/view_cart" className="nav-link nav-cart">
+                                    <FaCartPlus size={30} /><span className="d-lg-none">View Cart</span>
                                 </Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <div className="dropdown">
+
+                                    <Link
+                                        className="nav-link nav-profile dropdown-toggle"
+                                        id="navbarDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <CgProfile size={30} />
+                                        <span className="d-lg-none">Profile</span>
+                                    </Link>
+                                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <Link to="/seller_profile" className="dropdown-item">
+                                                Seller Profile(temp)
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/buyer_profile" className="dropdown-item">
+                                                Buyer Profile(temp)
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/home" className="dropdown-item">
+                                                Logout
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
             <div className="container">
                 {children}
             </div>
+
             <footer className="bg-dark text-center">
                 <div className="text-center text-light p-3">
                     © 2023 Copyright <Link className="text-light" to="https://bejiness.com/">Bejiness.com</Link>
