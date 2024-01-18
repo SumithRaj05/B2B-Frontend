@@ -2,16 +2,18 @@ import './Signup.css'
 
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { URL } from '../Auth/Auth';
 
 function Signup() {
     const navigate = useNavigate();
 
     // user input states 
-    
+
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
+    const [address, setAddress] = useState('');
     const [accountType, setAccountType] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [bussinessType, setBussinessType] = useState('');
@@ -27,12 +29,16 @@ function Signup() {
         setEmail(event.target.value);
     };
 
-    const handleMobileNumberChange = (event) => {
-        setMobileNumber(event.target.value);
+    const handlephoneNumberChange = (event) => {
+        setPhoneNumber(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+    };
+
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
     };
 
     const handleAccountTypeChange = (event) => {
@@ -51,45 +57,54 @@ function Signup() {
         setGstNumber(event.target.value);
     };
 
-    // reset form after submission 
-
-    const resetForm = () => {
-        setFullName('');
-        setEmail('');
-        setMobileNumber('');
-        setPassword('');
-        setAccountType('');
-        setCompanyName('');
-        setBussinessType('');
-        setGstNumber('');
-
-    }
-
     // form submission handler function 
 
-    const signupSubmitHandler = (event) => {
+    const signupSubmitHandler = async (event) => {
         event.preventDefault();
         const userData = {
-            fullname: fullName,
+            full_name: fullName,
             email: email,
-            mobile_number: mobileNumber,
+            phone_number: phoneNumber,
             password: password,
-            account_type: accountType
+            account_type: accountType,
+            address: address
         }
-        if (accountType === "seller" || accountType === "both") {
-            userData.company_name = companyName,
-                userData.bussiness_type = bussinessType,
-                userData.gst_number = gstNumber
+
+        if (accountType === "seller") {
+            userData.company_name = companyName;
+            userData.bussiness_type = bussinessType;
+            userData.gst_number = gstNumber;
         }
-        resetForm();
-        console.log(userData);
-        navigate('/login')
+
+        // Use the Fetch API to make a POST request
+        await fetch(URL + '/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        
+        }).then(response => {
+
+            response.json().then(data => {
+                if(data.token){
+                    localStorage.setItem("token", data.token);
+                }
+                navigate('/dashboard');
+            })
+        }).catch(error => {
+            // Handle any errors that occurred during the fetch
+            console.error('Error registering user:', error.message);
+            return <p>error.message</p>
+        });
     }
+
 
     return (
         <div className="signup-form">
             <form className="form-container" onSubmit={signupSubmitHandler}>
                 <h1>Signup</h1>
+
                 {/* full name input */}
                 <div className="form-group row">
                     <label htmlFor="fullname" className="col-form-label">Full Name</label>
@@ -120,17 +135,17 @@ function Signup() {
                     </div>
                 </div>
 
-                {/* mobile number input  */}
+                {/* phone number input  */}
                 <div className="form-group row">
-                    <label htmlFor="mobile_number" className="col-form-label">Mobile Number</label>
+                    <label htmlFor="phone_number" className="col-form-label">phone Number</label>
                     <div className="col-sm-10">
                         <input
                             type="text"
                             className="form-control signup-input"
                             id="inputEmail3"
-                            placeholder="Mobile Number"
-                            onChange={handleMobileNumberChange}
-                            value={mobileNumber}
+                            placeholder="phone Number"
+                            onChange={handlephoneNumberChange}
+                            value={phoneNumber}
                         />
                     </div>
                 </div>
@@ -150,6 +165,21 @@ function Signup() {
                     </div>
                 </div>
 
+                {/* address input  */}
+                <div className="form-group row">
+                    <label htmlFor="address" className="col-form-label">Address</label>
+                    <div className="col-sm-10">
+                        <input
+                            type="text"
+                            className="form-control signup-input"
+                            id="inputAddress3"
+                            placeholder="Address"
+                            onChange={handleAddressChange}
+                            value={address}
+                        />
+                    </div>
+                </div>
+
                 {/* account type input  */}
                 <fieldset className="form-group">
                     <label htmlFor="inputAccountType" className="col-form-label">Account type</label><br />
@@ -161,7 +191,7 @@ function Signup() {
                             id="inlineRadio1"
                             value="buyer"
                             onChange={handleAccountTypeChange}
-                            // defaultChecked={false}
+                        // defaultChecked={false}
                         />
                         <label className="form-check-label" htmlFor="buyer">Buyer</label>
                     </div>
@@ -173,27 +203,15 @@ function Signup() {
                             id="inlineRadio2"
                             value="seller"
                             onChange={handleAccountTypeChange}
-                            // defaultChecked={false}
+                        // defaultChecked={false}
                         />
                         <label className="form-check-label" htmlFor="seller">Seller</label>
                     </div>
 
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input"
-                            type="radio"
-                            name="radio"
-                            id="inlineRadio3"
-                            value="both"
-                            onChange={handleAccountTypeChange}
-                            // defaultChecked={false}
-                        />
-                        <label className="form-check-label" htmlFor="both">Both</label>
-                    </div>
-                    
                 </fieldset>
 
                 {
-                    (accountType === "seller" || accountType === "both")
+                    (accountType === "seller")
                     &&
                     <>
 

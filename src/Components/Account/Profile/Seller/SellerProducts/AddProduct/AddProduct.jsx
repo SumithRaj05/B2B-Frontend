@@ -1,18 +1,33 @@
 import './AddProduct.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import PricesInput from './PricesInput/PricesInput';
+import SpecsInput from './SpecsInput/SpecsInput';
+import { URL } from '../../../../../Auth/Auth';
 
 function AddProduct() {
     const navigate = useNavigate();
 
     const [productName, setProductName] = useState('');
     const [productAbout, setProductAbout] = useState('');
-    const [productQuantity, setProductQuantity] = useState('');
-    const [productPrice, setProductPrice] = useState('');
-    const [categoryType, setCategoryType] = useState('');
+    const [categoryType, setCategoryType] = useState('agri-products');
+
     const [productImages, setProductImages] = useState([]);
-    const [productCatalogue, setProductCatalogue] = useState('');
+
+
+    const [productDataList, setProductDataList] = useState([
+        { price: '', quantityRange: { min: '', max: '' } },
+    ]);
+    const [specs, setSpecs] = useState([{ key: '', value: '' }]);
+
+
+    const handlePricesChange = (priceData) => {
+        setProductDataList(priceData)
+    }
+    const handleSpecsChange = (specsData) => {
+        setSpecs(specsData)
+    }
 
     const productNameChangeHandler = (event) => {
         setProductName(event.target.value);
@@ -22,61 +37,56 @@ function AddProduct() {
         setProductAbout(event.target.value);
     }
 
-    const productQuantityChangeHandler = (event) => {
-        setProductQuantity(event.target.value);
-    }
-
-    const productPriceChangeHandler = (event) => {
-        setProductPrice(event.target.value);
-    }
-
     const categoryTypeChangeHandler = (event) => {
         setCategoryType(event.target.value);
     }
 
     const productImagesChangeHandler = (event) => {
         const files = event.target.files;
-        setProductImages([...files]);
+        setProductImages(files);
     }
 
-    const productCatalogueChangeHandler = (event) => {
-        const file = event.target.files[0];
-        setProductCatalogue(file);
-    }
 
-    const resetForm = () => {
-        setProductName('');
-        setProductAbout('');
-        setProductQuantity('');
-        setProductPrice('');
-        setCategoryType('');
-        setProductImages([]);
-        setProductCatalogue('');
+    const productSubmitHandler = async (event) => {
+        const token = localStorage.getItem('token')
 
-    }
-
-    const productSubmitHandler = (event) => {
-        event.preventDefault();
-        const productDetails = {
-            product_name: productName,
-            about: productAbout,
-            quantity: productQuantity,
-            price: productPrice,
-            category_type: categoryType,
-            product_image: productImages,
-            product_catalogue: productCatalogue
+        const formData = new FormData();
+        formData.append('product_name', productName);
+        formData.append('description', productAbout);
+        formData.append('prices', JSON.stringify(productDataList));
+        formData.append('specs', JSON.stringify(specs));
+        formData.append('category_type', categoryType);
+        
+        
+        for (let i = 0; i < productImages.length; i++) {
+            formData.append('product_image', productImages[i])
         }
-        resetForm();
-        console.log(productDetails);
+        
+        // Use the Fetch API to make a POST request
+        fetch(URL + '/api/products/upload', {
+            method: 'POST',
+            headers: {
+                'token': token,
+            },
+            body: formData,
+        }).then(response => {
+
+            response.json().then(data => {
+                console.log(data)
+            })
+        }).catch(error => {
+            // Handle any errors that occurred during the fetch
+            console.error('Error registering user:', error.message);
+            return <p>error.message</p>
+        });
+
     }
-
-
 
     return (
         <div className="container">
             <h2 className="mb-4">Upload  Product</h2>
 
-            <form encType="multipart/form-data" onSubmit={productSubmitHandler}>
+            <form encType='multipart/form-data' onSubmit={productSubmitHandler}>
                 <div className="mb-3">
                     <label htmlFor="productName" className="form-label">Product Name</label>
                     <input
@@ -91,43 +101,16 @@ function AddProduct() {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="productAbout" className="form-label">About Product</label>
+                    <label htmlFor="productAbout" className="form-label">Product Description</label>
                     <textarea
                         className="form-control"
                         id="productAbout"
                         rows="3"
-                        placeholder="Enter information about product"
+                        placeholder="Enter description of the product"
                         value={productAbout}
                         onChange={productAboutChangeHandler}
                         required
                     ></textarea>
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="productQuantity" className="form-label">Quantity</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="productQuantity"
-                        placeholder="Enter quantity"
-                        value={productQuantity}
-                        onChange={productQuantityChangeHandler}
-                        required
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="productPrice" className="form-label">Price</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="productPrice"
-                        placeholder="Enter price"
-                        value={productPrice}
-                        onChange={productPriceChangeHandler}
-                        required
-                        step="0.01"
-                    />
                 </div>
 
                 <div className="mb-3">
@@ -139,7 +122,6 @@ function AddProduct() {
                         onChange={categoryTypeChangeHandler}
                         required
                     >
-                        {/* <option disabled selected>Select category type</option> */}
                         <option value="agri-products">Agri Products & Equipments</option>
                         <option value="apparel-fashion">Apparel and Fashion</option>
                         <option value="architects-interior-designing">Architects & Interior Designing</option>
@@ -152,36 +134,40 @@ function AddProduct() {
                     </select>
                 </div>
 
+                <PricesInput priceData={handlePricesChange} />
+
+                <SpecsInput specsData={handleSpecsChange} />
+
                 <div className="mb-3">
                     <label htmlFor="productImages" className="form-label">Product Images (up to 5)</label>
                     <input
                         type="file"
+                        name="image"
                         className="form-control"
                         id="productImages"
                         accept="image/*"
-                        value={productImages}
                         onChange={productImagesChangeHandler}
                         multiple
                     />
                 </div>
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label htmlFor="productCatalogue" className="form-label">Product Catalogue (PDF)</label>
                     <input
                         type="file"
+                        name='pdf'
                         className="form-control"
                         id="productCatalogue"
-                        value={productCatalogue}
                         onChange={productCatalogueChangeHandler}
                         accept=".pdf"
                     />
-                </div>
+                </div> */}
 
                 <button type="submit" className="btn btn-primary">Upload Product</button>
 
-            </form>
+            </form >
             <button className="btn btn-secondary" onClick={() => navigate('/products')}>Cancel</button>
-        </div>
+        </div >
     )
 }
 

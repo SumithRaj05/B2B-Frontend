@@ -6,6 +6,35 @@ button {
     margin: 5px;
 }
 
+.cards-container {
+    margin-top: 20px;
+}
+
+.card {
+    width: 13rem;
+    margin: 10px;
+    height: auto;
+    box-shadow: 2px 2px 5px;
+    background-color: #fff;
+}
+
+.card-text{
+    margin: 5px;
+    padding: 0%;
+}
+
+.card-btn {
+    margin: 2px;
+}
+
+@media (max-width : 800px) {
+    .card {
+        width: 10rem;
+        height: auto;
+        margin: 5px;
+    }
+
+}
 
 @media (max-width:1000px) {
     .card-title {

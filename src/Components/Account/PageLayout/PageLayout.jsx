@@ -4,14 +4,42 @@ import { CgProfile } from 'react-icons/cg'
 import { BiSearchAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { FaCartPlus } from "react-icons/fa6";
+import { useAuth } from '../../Auth/AuthContext';
+import { useEffect, useState } from 'react';
+import { GetUser } from '../../ApiCallModules/Apis';
+import Logo from '../../../assets/logo.png'
 
 function PageLayout({ children }) {
+    const { setToken } = useAuth();
+
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await GetUser();
+                setUserData(data);
+            } catch (error) {
+                console.error("Error occurred while fetching user data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.setItem("token", "");
+        setToken(localStorage.getItem("token"));
+    }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
                 <div className="container-fluid">
 
-                    <Link className="navbar-brand" to="/dashboard">Bejiness.com</Link>
+                    <Link className="navbar-brand" to="/dashboard">
+                        <img src={Logo} className='navbar-logo'/>
+                    </Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,18 +73,22 @@ function PageLayout({ children }) {
                                         <span className="d-lg-none">Profile</span>
                                     </Link>
                                     <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        {
+                                            userData.account_type == "seller" ?
+                                                <li>
+                                                    <Link to="/seller_profile" className="dropdown-item">
+                                                        Seller Profile
+                                                    </Link>
+                                                </li>
+                                                :
+                                                <li>
+                                                    <Link to="/buyer_profile" className="dropdown-item">
+                                                        Buyer Profile
+                                                    </Link>
+                                                </li>
+                                        }
                                         <li>
-                                            <Link to="/seller_profile" className="dropdown-item">
-                                                Seller Profile(temp)
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/buyer_profile" className="dropdown-item">
-                                                Buyer Profile(temp)
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/home" className="dropdown-item">
+                                            <Link to="/home" onClick={handleLogout} className="dropdown-item">
                                                 Logout
                                             </Link>
                                         </li>
@@ -74,7 +106,7 @@ function PageLayout({ children }) {
 
             <footer className="bg-dark text-center">
                 <div className="text-center text-light p-3">
-                    © 2023 Copyright <Link className="text-light" to="https://bejiness.com/">Bejiness.com</Link>
+                    © 2024 Copyright <Link className="text-light" to="https://bejiness.com/">Bejiness.com</Link>
                 </div>
             </footer>
         </>

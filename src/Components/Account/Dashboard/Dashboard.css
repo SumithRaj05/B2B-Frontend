@@ -12,28 +12,3 @@
 .dashboard-buttons .dashboard-btn {
     margin: 2px;
 }
-
-.cards-container{
-    margin-top: 20px;
-}
-
-.card {
-    width: 10rem;
-    height: 20rem;
-    margin: 5px;
-    box-shadow: 2px 2px 5px;
-    background-color: #fff;
-}
-
-.card-btn{
-    margin: 2px;
-}
-
-@media (min-width : 800px) {
-    .card {
-        width: 13rem;
-        margin: 10px;
-        height: 18rem;
-    }
-    
-}

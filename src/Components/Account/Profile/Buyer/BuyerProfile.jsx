@@ -2,19 +2,35 @@ import './BuyerProfile.css'
 
 import { Link } from 'react-router-dom'
 import PageLayout from '../../PageLayout/PageLayout'
+import { useEffect, useState } from 'react';
+import { GetUser } from '../../../ApiCallModules/Apis';
 
 function BuyerProfile() {
+
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await GetUser();
+                setUserData(data);
+                console.log(userData);
+            } catch (error) {
+                console.error("Error occurred while fetching user data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <PageLayout>
             <div className="row profile-details">
                 <div className="col-md-8">
-                    <h2>User Details</h2>
-                    <p><strong>Full Name:</strong> John Doe</p>
-                    <p><strong>Email:</strong> john.doe@example.com</p>
-                    <p><strong>Mobile Number:</strong> 1234567890</p>
-                </div>
-                <div className="col-md-4 text-end">
-                    <p><strong>GST Number:</strong> GST123456789</p>
+                    <h2>Welcome <b>{userData.full_name}</b></h2>
+                    <p><strong>Email:</strong> {userData.email}</p>
+                    <p><strong>Phone Number:</strong> {userData.phone_number}</p>
+                    <p><strong>Address:</strong> {userData.address}</p>
                 </div>
             </div>
             <h1 className="mb-4">Orders List</h1>

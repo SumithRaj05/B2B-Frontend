@@ -4,21 +4,38 @@ import { Link } from 'react-router-dom'
 import { BsFillImageFill } from 'react-icons/bs'
 import { TbMoodEmpty } from "react-icons/tb";
 import PageLayout from '../../PageLayout/PageLayout'
+import { useEffect, useState } from 'react';
+import { GetUser } from '../../../ApiCallModules/Apis';
 
 function Profile() {
+
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await GetUser();
+                setUserData(data);
+            } catch (error) {
+                console.error("Error occurred while fetching user data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <PageLayout>
             <div className="row profile-details">
                 <div className="col-md-8">
-                    <h2>User Details</h2>
-                    <p><strong>Full Name:</strong> John Doe</p>
-                    <p><strong>Email:</strong> john.doe@example.com</p>
-                    <p><strong>Mobile Number:</strong> 1234567890</p>
-                    <p><strong>Business Name:</strong> ABC Corporation</p>
-                    <p><strong>Business Category:</strong> XYZ type</p>
+                    <h2>Welcome {userData.full_name}!</h2>
+                    <p><strong>Email:</strong> {userData.email}</p>
+                    <p><strong>Phone Number:</strong> {userData.phone_number}</p>
+                    <p><strong>Company Name:</strong> {userData.company_name}</p>
+                    <p><strong>Bussiness Category:</strong> {userData.bussiness_type}</p>
                 </div>
                 <div className="col-md-4 text-end">
-                    <p><strong>GST Number:</strong> GST123456789</p>
+                    <p><strong>GST Number:</strong> {userData.gst_number}</p>
                 </div>
             </div>
 
