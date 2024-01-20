@@ -3,6 +3,7 @@ import './PageLayout.css'
 import { CgProfile } from 'react-icons/cg'
 import { BiSearchAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import { IoNotificationsSharp } from "react-icons/io5";
 import { FaCartPlus } from "react-icons/fa6";
 import { useAuth } from '../../Auth/AuthContext';
 import { useEffect, useState } from 'react';
@@ -14,14 +15,14 @@ function PageLayout({ children }) {
 
     const [userData, setUserData] = useState({});
 
+    // useEffect(() => {
+    //     console.log(userData);
+    // }, [userData])
+
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const data = await GetUser();
-                setUserData(data);
-            } catch (error) {
-                console.error("Error occurred while fetching user data:", error);
-            }
+            const data = await GetUser();
+            setUserData(data);
         };
 
         fetchData();
@@ -38,7 +39,7 @@ function PageLayout({ children }) {
                 <div className="container-fluid">
 
                     <Link className="navbar-brand" to="/dashboard">
-                        <img src={Logo} className='navbar-logo'/>
+                        <img src={Logo} className='navbar-logo' />
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -53,6 +54,18 @@ function PageLayout({ children }) {
                         </form>
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                            {
+                                userData.account_type==="seller" &&
+                                <li className="nav-item">
+                                    <Link to="/view_cart" className="nav-link nav-cart">
+                                        <IoNotificationsSharp size={30} />
+                                    </Link>
+                                </li>
+                            }
+
+
+
                             <li className="nav-item">
                                 <Link to="/view_cart" className="nav-link nav-cart">
                                     <FaCartPlus size={30} /><span className="d-lg-none">View Cart</span>
@@ -74,16 +87,16 @@ function PageLayout({ children }) {
                                     </Link>
                                     <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         {
-                                            userData.account_type == "seller" ?
+                                            userData.account_type === "seller" ?
                                                 <li>
                                                     <Link to="/seller_profile" className="dropdown-item">
-                                                        Seller Profile
+                                                        Profile
                                                     </Link>
                                                 </li>
                                                 :
                                                 <li>
                                                     <Link to="/buyer_profile" className="dropdown-item">
-                                                        Buyer Profile
+                                                        Profile
                                                     </Link>
                                                 </li>
                                         }

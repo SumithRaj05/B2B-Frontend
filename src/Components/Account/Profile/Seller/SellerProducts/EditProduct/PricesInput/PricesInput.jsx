@@ -56,7 +56,7 @@ function PricesInput(props) {
 
     return (
         < div className='container' >
-            <label htmlFor=""><b>Enter Pricing Details</b></label>
+            <label htmlFor=""><b>Enter Updated Pricing Details</b></label>
             {
                 productDataList.map((productData, index) => (
                     <div className="row" key={index}>

@@ -11,7 +11,7 @@ function AddProduct() {
 
     const [productName, setProductName] = useState('');
     const [productAbout, setProductAbout] = useState('');
-    const [categoryType, setCategoryType] = useState('agri-products');
+    const [categoryType, setCategoryType] = useState('agri products & equipments');
 
     const [productImages, setProductImages] = useState([]);
 
@@ -48,6 +48,7 @@ function AddProduct() {
 
 
     const productSubmitHandler = async (event) => {
+        event.preventDefault()
         const token = localStorage.getItem('token')
 
         const formData = new FormData();
@@ -122,15 +123,15 @@ function AddProduct() {
                         onChange={categoryTypeChangeHandler}
                         required
                     >
-                        <option value="agri-products">Agri Products & Equipments</option>
-                        <option value="apparel-fashion">Apparel and Fashion</option>
-                        <option value="architects-interior-designing">Architects & Interior Designing</option>
-                        <option value="automobile-parts-spares">Automobile Parts & Spares</option>
-                        <option value="chemicals-dyes-solvents">Chemicals, Dyes & Solvents</option>
-                        <option value="construction-real-estate">Construction & Real Estate</option>
-                        <option value="consumer-electronics">Consumer Electronics</option>
-                        <option value="electricals-electronics">Electricals & Electronics</option>
-                        <option value="energy-power">Energy and Power</option>
+                        <option value="agri products & equipments">Agri Products & Equipments</option>
+                        <option value="apparel & fashion">Apparel & Fashion</option>
+                        <option value="architects & interior designing">Architects & Interior Designing</option>
+                        <option value="automobile parts & spares">Automobile Parts & Spares</option>
+                        <option value="chemicals dyes & solvents">Chemicals, Dyes & Solvents</option>
+                        <option value="construction real & estate">Construction & Real Estate</option>
+                        <option value="consumer electronics">Consumer Electronics</option>
+                        <option value="electricals & electronics">Electricals & Electronics</option>
+                        <option value="energy & power">Energy & Power</option>
                     </select>
                 </div>
 

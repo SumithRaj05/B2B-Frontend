@@ -1,15 +1,39 @@
 import './Dashboard.css'
 
 import PageLayout from "../PageLayout/PageLayout";
-import { BsFillImageFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AddItem, GetCategory } from '../../ApiCallModules/Apis';
+import { URL } from '../../Auth/Auth';
 
 function SellerDashboard() {
 
     const [categoryTitle, setCategoryTitle] = useState('All');
+    const [products, setProducts] = useState([])
 
-    function highlightButton(btn) {
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const data = await GetCategory(categoryTitle.toLowerCase());
+                setProducts(data.products)
+            } catch (error) {
+                console.error("Error occurred while fetching user data:", error);
+            }
+        };
+        fetchProduct();
+    }, [categoryTitle])
+
+    const addItemHandler = (productId) => {
+        const addItem = async () => {
+            try {
+                await AddItem(productId).then(() => alert("added"))
+            } catch (error) {
+                console.error("Error occurred while fetching user data:", error);
+            }
+        };
+        addItem();
+    }
+
+    const highlightButton = (btn) => {
         setCategoryTitle(btn.textContent)
 
         document.querySelectorAll('.dashboard-buttons .btn').forEach(function (button) {
@@ -45,7 +69,7 @@ function SellerDashboard() {
                         type="button"
                         className="dashboard-btn btn btn-sm btn-outline-info"
                         onClick={(e) => highlightButton(e.target)}
-                    >Consumers Electronics</button>
+                    >Consumer Electronics</button>
 
                     <button
                         type="button"
@@ -68,69 +92,21 @@ function SellerDashboard() {
                 </div>
                 <div className="row cards-container">
                     <h3>{categoryTitle}</h3>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <BsFillImageFill size={80} className="card-img-top" />
-                        <div className="card-body">
-                            <h5 className="card-title">(title)</h5>
-                            <p className="card-text">(price)</p>
-                            <p className="card-text">(quantity)</p>
-                            <Link to="#" className="btn btn-primary card-btn">Add to Cart</Link>
-                        </div>
-                    </div>
+                    {
+                        products.map((product, index) => (
+                            <div className="card" key={index}>
+                                <img className="card-img-top" height={100} width={100} src={URL + product.images[0]} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{product.product_name}</h5>
+                                    <p className="card-text">{product.description}</p>
+                                    <p className="card-text">{product.category_type}</p>
+                                    <button onClick={() => addItemHandler(product.product_id)} className="btn btn-primary card-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        ))
+
+                    }
+
                 </div>
 
             </PageLayout>

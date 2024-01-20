@@ -20,7 +20,6 @@ function SellerProducts() {
                 }
             }).then((res) => res.json().then((data) => {
                 setProducts(data.products)
-                console.log(data.products)
             })).catch((err) => {
                 console.log(err.message);
                 return <p>{err.message}</p>
