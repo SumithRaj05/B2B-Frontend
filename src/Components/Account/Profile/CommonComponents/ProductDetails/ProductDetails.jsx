@@ -37,7 +37,7 @@ function ProductDetails() {
     return (
         <PageLayout>
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6" >
                     <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
                         <div className="carousel-indicators">
                             {images.map((_, index) => (

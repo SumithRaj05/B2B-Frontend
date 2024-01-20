@@ -1,44 +1,29 @@
-.signup-form {
-    background-color: #303030;
+body{
+    background-color: rgb(255, 255, 255);
     display: flex;
-    /* align-items: center; */
     justify-content: center;
-    height: 100vh;
-    margin: 0;
-    overflow: scroll;
-    color: white;
 }
-
-.form-group{
-    margin: 20px;
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-container{
     height: auto;
     padding: 20px;
-}
-
-.signup-input{
-    background-color: transparent;
-    color: white;
-    border: solid 1.8px;
-    border-color: transparent transparent black transparent;
-    transition: 0.5s;
+    width: 350px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 
-.signup-input:focus{
-    box-shadow: none;
-    outline: none;
-    background-color: transparent;
-    color: white;
-    border-color: transparent transparent white transparent;
-}
+.form-control:focus {
+    border-color: #eef840;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(243, 240, 71, 0.6);
+  }
 
-.signup-btn{
-    margin: 15px;
-}
-
-.signup-link{
-    text-align: right;
+  .form-check-input:checked {
+    background-color: #fdd40d;
+    border-color: #fdd90d;
 }
