@@ -47,17 +47,18 @@ function Login() {
     }
 
     return (
-        <div className="container">
+        <div className="login-body">
+        <div className="container login-container">
        <img src="\src\assets\logo-bgremoved.png" alt="logo" style={{width:"80px"}} />
 
-            <form className="form-container mt-2" onSubmit={loginSubmitHandler}>
+            <form className="form-container mt-2 login-form-container" onSubmit={loginSubmitHandler}>
                 <h1>Login</h1>
 
                 <div className="mb-3">
                     <label htmlFor="phone_number" className="form-label">Phone Number</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control login-form-control"
                         id="inputEmail3"
                         placeholder="Enter your Phone Number"
                         onChange={handlePhoneNumberChange}
@@ -69,7 +70,7 @@ function Login() {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input
                         type="password"
-                        className="form-control"
+                        className="form-control login-form-control"
                         id="inputPassword3"
                         placeholder="Enter your Password"
                         onChange={handlePasswordChange}
@@ -83,6 +84,7 @@ function Login() {
                     <Link to="/signup" className="mt-2 d-block text-center">Don't have an account?</Link>
                 </div>
             </form>
+        </div>
         </div>
     )
 }
