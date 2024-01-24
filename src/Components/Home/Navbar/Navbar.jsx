@@ -30,15 +30,8 @@ function Navbar({ children }) {
                     </div>
                 </div>
             </nav>
-            <div className="container">
-                {children}
-            </div>
-
-            <footer className="bg-dark text-center">
-                <div className="text-center text-light p-3">
-                    © 2023 Copyright <Link className="text-light" to="https://bejiness.com/">Bejiness.com</Link>
-                </div>
-            </footer>
+           
+        
         </>
     )
 }

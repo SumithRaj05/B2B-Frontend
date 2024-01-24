@@ -1,0 +1,67 @@
+.s-App {
+  font-family: sans-serif;
+  text-align: center;
+  width: 95vw;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s-head{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: -.03em;
+  font-feature-settings: "ss01" on,"ss02" on,"ss03" on,"ss04" on;
+  color: #020815;
+}
+
+.s-ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  max-width: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    background: transparent; /* make scrollbar transparent */
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+  }
+
+
+  li {
+    background: #ffb12c;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0 4px;
+    font-size: 25px;
+    white-space: nowrap;
+  }
+}
+
+.s-button {
+  border: 0;
+  color: #000;
+  background-color: rgba(5, 10, 48, 0) ;
+  font-size: 24px;
+  margin: 0 8px;
+}
+
+.s-button ::hover {
+  border: 0;
+}
+
+
+
+.material-symbols-outlined{
+  background-color: gold;
+    border-radius: 50%;
+}

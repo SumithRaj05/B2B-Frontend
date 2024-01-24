@@ -113,7 +113,7 @@ function PageLayout({ children }) {
                 </div>
             </nav>
 
-            <div className="container">
+            <div className="container container-pagelayout">
                 {children}
             </div>
 

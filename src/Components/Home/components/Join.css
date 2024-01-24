@@ -1,0 +1,35 @@
+.join-p{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 54px;
+    font-feature-settings: "ss01" on,"ss02" on,"ss03" on,"ss04" on,"liga" off;
+    color: #fff;
+    margin-left: 200px;
+}
+
+
+.join-btn{
+    cursor: pointer;
+    width: 300px;
+    height: 70px;
+    font-size: 30px;
+    background: #ffb12c;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-btn ::after{
+    background: #ffb12c;
+}
+
+.join-back{
+    background-color: #050a30;
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}

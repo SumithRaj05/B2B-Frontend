@@ -4,6 +4,7 @@ import PageLayout from "../PageLayout/PageLayout";
 import { useEffect, useState } from 'react';
 import { AddItem, GetCategory } from '../../ApiCallModules/Apis';
 import { URL } from '../../Auth/Auth';
+import CategoryBar from './components/CategoryBar';
 
 function SellerDashboard() {
 
@@ -46,50 +47,22 @@ function SellerDashboard() {
     return (
         <>
             <PageLayout>
-                <div className="dashboard-buttons">
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info active"
-                        onClick={(e) => highlightButton(e.target)}
-                    >All</button>
+            <div style={{ width: "100vw", background: "white", display: "flex", flexDirection: "row", alignItems: "center" }}>
+    <div style={{ marginRight: "20px" }}>
+        <a href="#" style={{ textDecoration: "none", display: "flex", flexDirection: "column" , alignItems:"center" }}>
+            <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="" style={{ height: "auto", width: "80px" }} />
+            <p>Agri Product & Equipments</p>
+        </a>
+    </div>
+    <div style={{ marginRight: "20px" }}>
+        <a href="#" style={{ textDecoration: "none", display: "flex", flexDirection: "column" , alignItems:"center" }}>
+            <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="" style={{ height: "auto", width: "80px"}} />
+            <p>Agri Product & Equipments</p>
+        </a>
+    </div>
+</div>
 
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Agri Products & Equipments</button>
-
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Apparel & Fashion</button>
-
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Consumer Electronics</button>
-
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Electricals & Electronics</button>
-
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Automobile Parts & Spares</button>
-
-                    <button
-                        type="button"
-                        className="dashboard-btn btn btn-sm btn-outline-info"
-                        onClick={(e) => highlightButton(e.target)}
-                    >Architects & Interior Designing</button>
-
-                </div>
+                <CategoryBar highlightButton={highlightButton}/>
                 <div className="row cards-container">
                     <h3>{categoryTitle}</h3>
                     {

@@ -1,0 +1,28 @@
+.s-title2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 72px;
+    letter-spacing: -.03em;
+    font-feature-settings: "ss03" on,"ss04" on,"ss01" on,"ss02" on;
+    color: #000000;
+    /* margin-left: 30px; */
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  @media (max-width: 768px) {
+    .s-title2 {
+      justify-content:flex-start;
+      line-height: 36px;
+      font-size: 30px; /* Show one product in a row on smaller screens */
+    }
+  }
+
+
+
+  .main2{
+    margin-top: 50px;
+  }

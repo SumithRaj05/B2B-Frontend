@@ -1,0 +1,25 @@
+.explore-h{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: -.03em;
+    font-feature-settings: "ss01" on,"ss02" on,"ss03" on,"ss04" on;
+    color: #020815;
+}
+
+.explore-p{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    color: #464d59;
+}
+
+.explore-grp{
+    padding: 30px 100px;
+}

@@ -1,16 +1,16 @@
 body {
-    background-color: #d1d1d1;
+    background-color: #ffffff;
 }
 
 button {
     margin: 5px;
 }
 
-.cards-container {
+.cards-container22 {
     margin-top: 20px;
 }
 
-.card {
+.card22 {
     width: 13rem;
     margin: 10px;
     height: auto;
@@ -18,17 +18,17 @@ button {
     background-color: #fff;
 }
 
-.card-text{
+.card-text22{
     margin: 5px;
     padding: 0%;
 }
 
-.card-btn {
+.card-btn22 {
     margin: 2px;
 }
 
 @media (max-width : 800px) {
-    .card {
+    .card22 {
         width: 10rem;
         height: auto;
         margin: 5px;
