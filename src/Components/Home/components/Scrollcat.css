@@ -65,3 +65,21 @@
   background-color: gold;
     border-radius: 50%;
 }
+
+/* Add this media query to adjust styles for smaller screens */
+@media (max-width: 768px) {
+  .s-App {
+    /* flex-direction: column; Display tags in a single column for mobile */
+  }
+
+  .s-li {
+    background: #ffb12c;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0 1px;
+    font-size: 15px;
+    white-space: nowrap;
+    margin-bottom: 8px; /* Add margin between tags for better spacing */
+  }
+}

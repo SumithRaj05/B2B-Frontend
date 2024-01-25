@@ -79,7 +79,7 @@ export default function Container1() {
         </div>
       </div>
       <div className="img-div">
-        {/* <img src="/home/home-img1.png" alt="" /> */}
+        <img src="/home/home-img1.png" alt="" />
       </div>
     </div>
   )

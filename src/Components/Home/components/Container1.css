@@ -204,6 +204,12 @@
       width: 95%;
     }
   }
+
+  @media (max-width: 900px) {
+    .img-div {
+      display: none;
+    }
+  }
   
   .search-button {
     width: 151px;
