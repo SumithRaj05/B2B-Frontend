@@ -46,7 +46,8 @@ function ViewCart() {
   };
 
   return (
-    <PageLayout>
+    <>
+    <PageLayout />
       <div className="container mt-4">
         <div className="row cart-item-mrg">
           <div className="col-12">
@@ -124,7 +125,7 @@ function ViewCart() {
           </div>
         </div>
       </div>
-    </PageLayout>
+      </>
   );
 }
 

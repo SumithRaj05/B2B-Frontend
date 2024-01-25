@@ -13,7 +13,8 @@ import Navbar from "./components/Navbar";
 
 export default function Home(){
   return(
-    <>
+    < >
+    <div style={{margin:"-90px -40px"}}>
     <Navbar />
     <Container1 />
     <Container2 />
@@ -24,7 +25,7 @@ export default function Home(){
     <Explore />
     <Join />
     <Footer />
-    <Post />
+    <Post /></div>
     </>
   )
 }

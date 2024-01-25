@@ -6,3 +6,12 @@
 .navbar-nav{
     align-items: center;
 }
+
+.navbar {
+    z-index: 1000; /* Set to a value that ensures it's above other elements */
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+  

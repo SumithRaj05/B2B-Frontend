@@ -9,7 +9,11 @@
     margin-left: 200px;
 }
 
-
+@media (max-width: 768px) {
+    .join-p{
+    margin-left: 20px;
+    }
+}
 .join-btn{
     cursor: pointer;
     width: 300px;

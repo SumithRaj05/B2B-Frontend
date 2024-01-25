@@ -23,3 +23,7 @@
 .explore-grp{
     padding: 30px 100px;
 }
+
+@media (max-width: 768px) {
+    .explore-grp{padding: 30px 10px;}
+}

@@ -45,12 +45,12 @@ function SellerDashboard() {
 
   return (
     <>
-      <PageLayout>
+      <PageLayout />
         <DashCategory highlightButton={highlightButton}/>
         
         <div className="row cards-container d-flex mt-5">
           {products.map((product, index) => (
-            <div className="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 d-flex" key={index}>
+            <div className="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 d-flex" style={{maxWidth: '200px'}} key={index}>
               <div
                 className={`card ${hovered === index ? 'shadow-lg' : 'shadow'} flex-grow-1`}
                 onMouseEnter={() => setHovered(index)}
@@ -94,7 +94,7 @@ function SellerDashboard() {
             </div>
           ))}
         </div>
-      </PageLayout>
+     
     </>
   );
 }

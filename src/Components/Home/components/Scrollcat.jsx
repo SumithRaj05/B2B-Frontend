@@ -56,7 +56,7 @@ const Scrollcat = () => {
     <div className="s-App">
       {scrollX !== 0 && (
         <button className="prev s-button material-symbols-outlined-arrow" onClick={() => slide(-800)}>
-          <span class="material-symbols-outlined material-symbols-outlined-arrow ">
+          <span className="material-symbols-outlined material-symbols-outlined-arrow ">
 chevron_left
 </span>
         </button>
@@ -68,7 +68,7 @@ chevron_left
       </ul>
       {!scrollEnd && (
         <button className="next s-button material-symbols-outlined-arrow" onClick={() => slide(800)}>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
 chevron_right
 </span>
         </button>

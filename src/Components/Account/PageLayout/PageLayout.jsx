@@ -1,129 +1,122 @@
-import './PageLayout.css'
-
-import { CgProfile } from 'react-icons/cg'
-import { BiSearchAlt } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
-import { IoNotificationsSharp } from "react-icons/io5";
-import { FaCartPlus } from "react-icons/fa6";
+import React, { useState, useEffect } from 'react';
+import { BiSearchAlt } from 'react-icons/bi';
+import { IoNotificationsSharp } from 'react-icons/io5';
+import { FaCartPlus } from 'react-icons/fa6';
+import { CgProfile } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../Auth/AuthContext';
-import { useEffect, useState } from 'react';
 import { GetUser } from '../../ApiCallModules/Apis';
-import Logo from '../../../assets/logo.png'
+import './PageLayout.css';
 
-function PageLayout({ children }) {
-    const { setToken } = useAuth();
+export default function PageLayout({ children }) {
+  const { setToken } = useAuth();
+  const [userData, setUserData] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
 
-    const [userData, setUserData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetUser();
+      setUserData(data);
+    };
 
-    // useEffect(() => {
-    //     console.log(userData);
-    // }, [userData])
+    fetchData();
+  }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await GetUser();
-            setUserData(data);
-        };
+  const handleLogout = () => {
+    localStorage.setItem('token', '');
+    setToken(localStorage.getItem('token'));
+  };
 
-        fetchData();
-    }, []);
+  return (
+    <>
+      <nav
+        className={`navbar navbar-expand-lg navbar-light bg-dark fixed-top`}
+        style={{ transition: 'background 0.3s, color 0.3s' }}
+      >
+        <div className="container" style={{ maxWidth: '1100px' }}>
+          <a className={`navbar-brand text-white font-weight-bold`} href="#">
+            <img
+              src="/home/bejiness-logo.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="Logo"
+            />
+            Bejiness.com
+          </a>
 
-    const handleLogout = () => {
-        localStorage.setItem("token", "");
-        setToken(localStorage.getItem("token"));
-    }
+          {/* Search Bar */}
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{ fontSize: '22px' }}
+            />
+            <BiSearchAlt size={20} />
+          </div>
 
-    return (
-        <>
-            <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
-                <div className="container-fluid">
+          <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              {userData.account_type === 'seller' && (
+                <li className="nav-item">
+                  <Link to="/view_cart" className="nav-link nav-cart">
+                    <IoNotificationsSharp color='white' size={30} />
+                  </Link>
+                </li>
+              )}
 
-                    <Link className="navbar-brand" to="/dashboard">
-                        <img src={Logo} className='navbar-logo' />
-                    </Link>
+              <li className="nav-item">
+                <Link to="/view_cart" className="nav-link nav-cart">
+                  <FaCartPlus color='white' size={30} />
+                  <span className="d-lg-none">View Cart</span>
+                </Link>
+              </li>
 
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <form className="d-flex mx-auto">
-                            <input className="form-control me-2 nav-search" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-primary nav-search-btn"><BiSearchAlt size={20} /></button>
-                        </form>
-
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                            {
-                                userData.account_type==="seller" &&
-                                <li className="nav-item">
-                                    <Link to="/view_cart" className="nav-link nav-cart">
-                                        <IoNotificationsSharp size={30} />
-                                    </Link>
-                                </li>
-                            }
-
-
-
-                            <li className="nav-item">
-                                <Link to="/view_cart" className="nav-link nav-cart">
-                                    <FaCartPlus size={30} /><span className="d-lg-none">View Cart</span>
-                                </Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <div className="dropdown">
-
-                                    <Link
-                                        className="nav-link nav-profile dropdown-toggle"
-                                        id="navbarDropdown"
-                                        role="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        <CgProfile size={30} />
-                                        <span className="d-lg-none">Profile</span>
-                                    </Link>
-                                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        {
-                                            userData.account_type === "seller" ?
-                                                <li>
-                                                    <Link to="/seller_profile" className="dropdown-item">
-                                                        Profile
-                                                    </Link>
-                                                </li>
-                                                :
-                                                <li>
-                                                    <Link to="/buyer_profile" className="dropdown-item">
-                                                        Profile
-                                                    </Link>
-                                                </li>
-                                        }
-                                        <li>
-                                            <Link to="/home" onClick={handleLogout} className="dropdown-item">
-                                                Logout
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+              <li className="nav-item">
+                <div className="dropdown" >
+                  <Link
+                    className="nav-link nav-profile dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <CgProfile color='white' size={30} />
+                    <span className="d-lg-none" >Profile</span>
+                  </Link>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown" 
+                  >
+                    {userData.account_type === 'seller' ? (
+                      <li>
+                        <Link to="/seller_profile" className="dropdown-item">
+                          Profile
+                        </Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link to="/buyer_profile" className="dropdown-item">
+                          Profile
+                        </Link>
+                      </li>
+                    )}
+                    <li>
+                      <Link to="/home" onClick={handleLogout} className="dropdown-item">
+                        Logout
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-            </nav>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-            <div className="container container-pagelayout">
-                {children}
-            </div>
-
-            <footer className="bg-dark text-center">
-                <div className="text-center text-light p-3">
-                    © 2024 Copyright <Link className="text-light" to="https://bejiness.com/">Bejiness.com</Link>
-                </div>
-            </footer>
-        </>
-    )
+      <div className="container container-pagelayout">{children}</div>
+    </>
+  );
 }
-
-export default PageLayout

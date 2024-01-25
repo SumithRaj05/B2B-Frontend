@@ -116,8 +116,8 @@ export default function Recommend(){
     
             {/* Third Column */}
             <div className="col-md-4 mb-4 mx-2">
-    <div class="rec-con-in2">
-        <div class="your-content-div">
+    <div className="rec-con-in2">
+        <div className="your-content-div">
             <img src="home/boost.png" alt="" />
         </div>
     </div></div>

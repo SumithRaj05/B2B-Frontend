@@ -24,7 +24,9 @@ function Profile() {
     }, []);
 
     return (
-        <PageLayout>
+        <>
+        <div style={{margin:"90px 40px"}}>
+        <PageLayout />
             <div className="row profile-details">
                 <div className="col-md-8">
                     <h2>Welcome {userData.full_name}!</h2>
@@ -47,7 +49,7 @@ function Profile() {
 
             <h3><TbMoodEmpty size={50} />   No Orders placed yet...  <Link to="/dashboard">Start shopping now :)</Link></h3>
 
-        </PageLayout>
+            </div></>
     )
 }
 

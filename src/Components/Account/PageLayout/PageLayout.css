@@ -1,22 +1,7 @@
-.nav-item {
-    margin-right: 30px;
+.nav-bg-blue{
+    background-color: #050a30!important;
 }
 
-.container-pagelayout {
-    padding: 20px 20px;
-}
-
-.d-lg-none {
-    margin: 10px;
-}
-
-.navbar-logo{
-    height: 60px;
-    width: 60px;
-    margin: 0%;
-    padding: 0%;
-}
-
-.navbar {
-    background-color: #050a30;
+body{
+    margin:90px 40px;
 }

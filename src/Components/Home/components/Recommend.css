@@ -54,6 +54,13 @@
 }
 
 
+@media (max-width: 768px) {
+    .bod-div{
+        margin: 10px;
+        max-width: 380px;
+    }
+}
+
 .just-cent{
     justify-content: center;
 }
