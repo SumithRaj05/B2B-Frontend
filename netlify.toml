@@ -1,0 +1,6 @@
+[build]
+command = "npm run build"
+
+[[module]]
+  path = "B2B-Frontend"
+  url = "https://github.com/yourusername/B2B-Frontend.git"
