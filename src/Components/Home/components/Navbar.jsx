@@ -48,12 +48,12 @@ const Navbar = () => {
         <li  className={`nav-item ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`}>|</li>
         
         <li className="nav-item">
-          <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="#">
+          <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="/login">
             Login
           </a>
         </li>
         <li className="nav-item">
-          <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="#">
+          <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="/signup">
             Sign Up
           </a>
         </li>

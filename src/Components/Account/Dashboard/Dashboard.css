@@ -12,3 +12,9 @@
 .dashboard-buttons .dashboard-btn {
     margin: 2px;
 }
+
+
+.btn-icn-cent{
+    display: flex;
+    align-items: center;
+}

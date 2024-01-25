@@ -1,134 +1,131 @@
-import './ViewCart.css'
-
-import PageLayout from "../../PageLayout/PageLayout"
+import './ViewCart.css';
+import PageLayout from '../../PageLayout/PageLayout';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { DeleteCart, DeleteItem, GetItems, UpdateQuantity } from '../../../ApiCallModules/Apis';
 
 function ViewCart() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [cartItems, setCartItems] = useState([]);
-    const [quantity, setQuantity] = useState(0);
-    const [totalAmount, setTotalAmount] = useState();
+  const [cartItems, setCartItems] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  const [totalAmount, setTotalAmount] = useState();
+  const [totalItems, setTotalItems] = useState();
 
-    const fetchCartItems = async () => {
-        const cartData = await GetItems();
-        setCartItems(cartData.cart_items.product_details);
-        setTotalAmount(cartData.cart_items.total_amount);
-    }
+  const fetchCartItems = async () => {
+    const cartData = await GetItems();
+    setCartItems(cartData.cart_items.product_details);
+    setTotalAmount(cartData.cart_items.total_amount);
+    setTotalItems(cartData.cart_items.total_items);
+  };
 
-    useEffect(() => {
-        fetchCartItems()
-    }, [])
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
 
-    const QuantityChangeHandler = (e) => {
-        setQuantity(e.target.value)
-    }
+  const QuantityChangeHandler = (e) => {
+    setQuantity(e.target.value);
+  };
 
-    const handleSaveClick = async (productId, quantity) => {
-        const data = await UpdateQuantity(productId, quantity)
-        fetchCartItems()
-        alert(data.content)
-    }
+  const handleSaveClick = async (productId, quantity) => {
+    const data = await UpdateQuantity(productId, quantity);
+    fetchCartItems();
+    alert(data.content);
+  };
 
-    const deleteItemHandler = async (productId) => {
-        const data = await DeleteItem(productId);
-        fetchCartItems()
-        alert(data.content)
-    }
+  const deleteItemHandler = async (productId) => {
+    const data = await DeleteItem(productId);
+    fetchCartItems();
+    alert(data.content);
+  };
 
-    const deleteCartHandler = async () => {
-        const data = await DeleteCart();
-        fetchCartItems()
-        alert(data.content)
-    }
+  const deleteCartHandler = async () => {
+    const data = await DeleteCart();
+    fetchCartItems();
+    alert(data.content);
+  };
 
-    const TotalAmountHandler = () => {
-
-    }
-
-    return (
-        <PageLayout>
-            <div className="row">
-                <div className="col-12">
-                    <h2>Cart Items</h2>
-                </div>
+  return (
+    <PageLayout>
+      <div className="container mt-4">
+        <div className="row cart-item-mrg">
+          <div className="col-12">
+            <h2>Cart Items</h2>
+          </div>
+        </div>
+        <div className="row cart-item-mrg">
+          <div className="col-md-8">
+            {cartItems.length !== 0 ? (
+              <>
+                {cartItems.map((item, index) => (
+                  <div className="row product-list border-bottom mb-3 pb-3 cart-item-row" key={index}>
+                    <div className="col-md-8 product-details">
+                      <div className="order-id float-md-right">Product ID: {item.product_id}</div>
+                      <h4>{item.product_name}</h4>
+                      <p>Seller: {item.seller}</p>
+                    </div>
+                    <div className="col-md-2 action-buttons">
+                      <div className="input-group">
+                        <input
+                          type="number"
+                          className="form-control quantity-input"
+                          defaultValue={item.quantity}
+                          min="1"
+                          onChange={QuantityChangeHandler}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-2 button-container">
+                      <button
+                        className="btn btn-success ml-md-2"
+                        onClick={() => handleSaveClick(item.product_id, quantity)}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={() => deleteItemHandler(item.product_id)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <h2>Cart is empty :)</h2>
+            )}
+          </div>
+          <div className="col-md-4 ">
+            <div className="total-amount-container p-3 total-amt-bor">
+              <div className="total-amount text-md-right">
+                <h4>Total Amount</h4>
+                <h3>Total: <span className="total-amount-value">{totalAmount} rs</span></h3>
+                <p>Total Items: {totalItems}</p>
+              </div>
+              <div className="place-order-button mt-3">
+                <button
+                  className="btn btn-lg btn-placeorder"
+                  type="button"
+                  onClick={() => navigate('/payment')}
+                  style={{backgroundColor:"#ffb12c", color:"white"}}
+                >
+                  Place Order
+                </button>
+                {/* <button
+                  className="btn btn-outline-danger btn-lg"
+                  type="button"
+                  onClick={deleteCartHandler}
+                >
+                  Clear Cart
+                </button> */}
+              </div>
             </div>
-
-
-            {
-                (cartItems.length) !== 0 ?
-
-                    <>
-                        <div className="row">
-                            <div className="col-12">
-                                {
-                                    cartItems.map((item, index) => {
-                                        return <div className="product-list" key={index}>
-                                            <div className="product-details">
-                                                <div className="order-id float-right">Product ID: {item.product_id}</div>
-                                                <h4>{item.product_name}</h4>
-                                                <p>Seller: {item.seller}</p>
-                                            </div>
-                                            <div className="action-buttons float-right">
-                                                <div className="input-group">
-                                                    <input
-                                                        type="number"
-                                                        className="quantity-input"
-                                                        defaultValue={item.quantity}
-                                                        min="1"
-                                                        onChange={QuantityChangeHandler}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="button-container">
-                                                <button
-                                                    className="btn btn-success ml-2"
-                                                    onClick={() => handleSaveClick(item.product_id, quantity)}
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    className="btn btn-outline-danger"
-                                                    onClick={() => deleteItemHandler(item.product_id)}
-                                                >
-                                                    Remove
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    })
-                                }
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-12 total-amount">
-                                <h4>Total Amount</h4>
-                                <h3>Total: {totalAmount} rs</h3>
-
-                                <button
-                                    className="btn btn-primary btn-lg"
-                                    type="button"
-                                    onClick={() => navigate('/payment')}
-                                >Place Order</button>
-                                <button
-                                    className="btn btn-outline-danger btn-lg"
-                                    type="button"
-                                    onClick={deleteCartHandler}
-                                >Clear Cart</button>
-                            </div>
-                        </div>
-                    </>
-                    :
-                    <h2>Cart is empty :)</h2>
-            }
-
-
-
-        </PageLayout>
-    )
+          </div>
+        </div>
+      </div>
+    </PageLayout>
+  );
 }
 
-export default ViewCart
+export default ViewCart;

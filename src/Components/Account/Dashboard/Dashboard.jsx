@@ -1,90 +1,102 @@
-import './Dashboard.css'
-
+import './Dashboard.css';
 import PageLayout from "../PageLayout/PageLayout";
 import { useEffect, useState } from 'react';
 import { AddItem, GetCategory } from '../../ApiCallModules/Apis';
 import { URL } from '../../Auth/Auth';
-import CategoryBar from './components/CategoryBar';
+import DashCategory from './components/Dash_category';
 
 function SellerDashboard() {
+  const [categoryTitle, setCategoryTitle] = useState('All');
+  const [products, setProducts] = useState([]);
+  const [hovered, setHovered] = useState(-1);
 
-    const [categoryTitle, setCategoryTitle] = useState('All');
-    const [products, setProducts] = useState([])
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await GetCategory(categoryTitle.toLowerCase());
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+    fetchProduct();
+  }, [categoryTitle]);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const data = await GetCategory(categoryTitle.toLowerCase());
-                setProducts(data.products)
-            } catch (error) {
-                console.error("Error occurred while fetching user data:", error);
-            }
-        };
-        fetchProduct();
-    }, [categoryTitle])
+  const addItemHandler = (productId) => {
+    const addItem = async () => {
+      try {
+        await AddItem(productId).then(() => alert("added"));
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+    addItem();
+  };
 
-    const addItemHandler = (productId) => {
-        const addItem = async () => {
-            try {
-                await AddItem(productId).then(() => alert("added"))
-            } catch (error) {
-                console.error("Error occurred while fetching user data:", error);
-            }
-        };
-        addItem();
-    }
+  const highlightButton = (btn) => {
+    setCategoryTitle(btn.textContent);
 
-    const highlightButton = (btn) => {
-        setCategoryTitle(btn.textContent)
+    document.querySelectorAll('.dashboard-buttons .btn').forEach(function (button) {
+      button.classList.remove('active');
+    });
 
-        document.querySelectorAll('.dashboard-buttons .btn').forEach(function (button) {
-            button.classList.remove('active');
-        });
+    btn.classList.add('active');
+  };
 
-        btn.classList.add('active');
-    }
-
-    return (
-        <>
-            <PageLayout>
-            <div style={{ width: "100vw", background: "white", display: "flex", flexDirection: "row", alignItems: "center" }}>
-    <div style={{ marginRight: "20px" }}>
-        <a href="#" style={{ textDecoration: "none", display: "flex", flexDirection: "column" , alignItems:"center" }}>
-            <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="" style={{ height: "auto", width: "80px" }} />
-            <p>Agri Product & Equipments</p>
-        </a>
-    </div>
-    <div style={{ marginRight: "20px" }}>
-        <a href="#" style={{ textDecoration: "none", display: "flex", flexDirection: "column" , alignItems:"center" }}>
-            <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="" style={{ height: "auto", width: "80px"}} />
-            <p>Agri Product & Equipments</p>
-        </a>
-    </div>
-</div>
-
-                <CategoryBar highlightButton={highlightButton}/>
-                <div className="row cards-container">
-                    <h3>{categoryTitle}</h3>
-                    {
-                        products.map((product, index) => (
-                            <div className="card" key={index}>
-                                <img className="card-img-top" height={100} width={100} src={URL + product.images[0]} />
-                                <div className="card-body">
-                                    <h5 className="card-title">{product.product_name}</h5>
-                                    <p className="card-text">{product.description}</p>
-                                    <p className="card-text">{product.category_type}</p>
-                                    <button onClick={() => addItemHandler(product.product_id)} className="btn btn-primary card-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        ))
-
-                    }
-
+  return (
+    <>
+      <PageLayout>
+        <DashCategory highlightButton={highlightButton}/>
+        
+        <div className="row cards-container d-flex mt-5">
+          {products.map((product, index) => (
+            <div className="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 d-flex" key={index}>
+              <div
+                className={`card ${hovered === index ? 'shadow-lg' : 'shadow'} flex-grow-1`}
+                onMouseEnter={() => setHovered(index)}
+                onMouseLeave={() => setHovered(-1)}
+              >
+                <img
+                  className="card-img-top"
+                  height={100}
+                  width={100}
+                  src={URL + product.images[0]}
+                  alt={product.product_name}
+                />
+                <div className={`card-body d-flex flex-column`}>
+                  <h5 className="card-title">{product.product_name}</h5>
+                  <p className="card-text">{product.description}</p>
+                  <p className="card-text">{product.category_type}</p>
+                  <div className="d-flex justify-content-between mt-auto">
+                    <button
+                      onClick={() => addItemHandler(product.product_id)}
+                      className="btn btn-warning card-btn btn-icn-cent"
+                    >
+                      <span className="material-symbols-outlined" style={{ color: "white" }}>
+                        add_shopping_cart
+                      </span>
+                    </button>
+                    <button
+                      // onClick={() => addItemHandler(product.product_id)}
+                      className="btn btn-info card-btn btn-icn-cent"
+                    >
+                      <lord-icon
+                        src="https://cdn.lordicon.com/fmjvulyw.json"
+                        trigger="loop"
+                        delay="1500"
+                        style={{ width: '25px', height: '25px' }}
+                      >
+                      </lord-icon>
+                    </button>
+                  </div>
                 </div>
-
-            </PageLayout>
-        </>
-    )
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageLayout>
+    </>
+  );
 }
 
-export default SellerDashboard
+export default SellerDashboard;
