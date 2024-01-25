@@ -1,0 +1,8 @@
+[build]
+command = "your_build_command"
+publish = "path/to/public"
+# Other configuration...
+
+[[module]]
+  path = "B2B-Frontend"
+  url = "https://github.com/yourusername/B2B-Frontend.git"
