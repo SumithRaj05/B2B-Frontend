@@ -1,0 +1,3 @@
+[submodule "B2B-Frontend"]
+    path = B2B-Frontend
+    url = https://github.com/SumithRaj05/B2B-Frontend.git
