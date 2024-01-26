@@ -3,6 +3,7 @@ import PageLayout from '../../PageLayout/PageLayout';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { DeleteCart, DeleteItem, GetItems, UpdateQuantity } from '../../../ApiCallModules/Apis';
+import { URL } from '../../../Auth/Auth';
 
 function ViewCart() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function ViewCart() {
     setCartItems(cartData.cart_items.product_details);
     setTotalAmount(cartData.cart_items.total_amount);
     setTotalItems(cartData.cart_items.total_items);
+    console.log(cartData.cart_items)
   };
 
   useEffect(() => {
@@ -48,7 +50,7 @@ function ViewCart() {
   return (
     <>
     <PageLayout />
-      <div className="container mt-4">
+      <div className="container mt-4 viewcart-main">
         <div className="row cart-item-mrg">
           <div className="col-12">
             <h2>Cart Items</h2>
@@ -59,12 +61,21 @@ function ViewCart() {
             {cartItems.length !== 0 ? (
               <>
                 {cartItems.map((item, index) => (
-                  <div className="row product-list border-bottom mb-3 pb-3 cart-item-row" key={index}>
-                    <div className="col-md-8 product-details">
-                      <div className="order-id float-md-right">Product ID: {item.product_id}</div>
-                      <h4>{item.product_name}</h4>
-                      <p>Seller: {item.seller}</p>
+                  
+                  <div className="row product-list border-bottom mb-3 cart-item-row" key={index}>
+                  <div className="col-md-8 product-details">
+                    <div className="d-flex align-items-center">
+                    
+                      <img src={URL + item.product_image[0]} alt="" className="cart-img border shadow-lg" />
+                
+                    
+                      <div className="ml-3">
+                        <div className="order-id">Product ID: {item.product_id}</div>
+                        <h4>{item.product_name}</h4>
+                        <p>Seller: {item.seller}</p>
+                      </div>
                     </div>
+                  </div>
                     <div className="col-md-2 action-buttons">
                       <div className="input-group">
                         <input

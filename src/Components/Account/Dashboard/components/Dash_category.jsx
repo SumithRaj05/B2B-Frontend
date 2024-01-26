@@ -93,7 +93,7 @@ const Dash_category = ({ highlightButton }) => {
 
   return (
     <div className="App">
-      <div style={{ width: "90vw", background: "#bcffd8", display: "flex", flexDirection: "row", alignItems: "center" }}>
+      <div className="cargy-scroll-style">
         <button className="prev s-button" onClick={() => slide(-800)}>
           <span class="material-symbols-outlined">
 chevron_left

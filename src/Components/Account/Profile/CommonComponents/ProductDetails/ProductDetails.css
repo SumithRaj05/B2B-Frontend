@@ -19,3 +19,88 @@
     height: auto; /* Maintain aspect ratio */
     margin: auto; /* Center the image */
 }
+
+.carousel-inner-centr{
+    display: flex;
+    align-items: center;
+    height: 500px;
+    border: 1px dotted #c5c1c1d9;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+}
+
+
+.carousel-inner-centr {
+    text-align: center;
+    padding: 12px;
+  }
+  
+  .carousel-image {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform .2s; /* Animation for the zoom effect */
+  }
+  
+  .carousel-image:hover {
+    transform: scale(1.1); /* Zoom-in effect */
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    margin-top: 40vh;
+  }
+  
+  .carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    border-radius: 50%;
+  
+ 
+    /* margin-top: 40%; */
+  }
+  
+  .carousel-control-prev-icon {
+    background-color:#ffa200 ;
+  }
+  
+  .carousel-control-next-icon {
+    background-color:#ffa200 ;
+    /* background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.668 1.438l4.142 4.14A.5.5 0 0 1 4 6.5h-.258L2.67 2.97a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); */
+  }
+
+  
+
+  .prod-details-butadd{
+    display: flex!important;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 50px;
+
+  }
+
+  .addcart-prodetail{
+    color: #fff;
+    background-color: #ffb12c;
+    border-color: #ffb12c;
+  }
+
+  .buy-prodetail{
+    color: #fff;
+    background-color: #050a30;
+    border-color: #050a30;
+  }
+
+  

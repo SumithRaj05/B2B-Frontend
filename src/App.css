@@ -6,38 +6,12 @@ button {
     margin: 5px;
 }
 
-/* .cards-container22 {
-    margin-top: 20px;
+body{
+    margin:90px 40px;
 }
 
-.card22 {
-    width: 13rem;
-    margin: 10px;
-    height: auto;
-    box-shadow: 2px 2px 5px;
-    background-color: #fff;
-}
-
-.card-text22{
-    margin: 5px;
-    padding: 0%;
-}
-
-.card-btn22 {
-    margin: 2px;
-}
-
-@media (max-width : 800px) {
-    .card22 {
-        width: 10rem;
-        height: auto;
-        margin: 5px;
+@media (max-width: 800px) {
+    body{
+        margin: 100px 10px
     }
-
 }
-
-@media (max-width:1000px) {
-    .card-title {
-        font-size: 20px;
-    }
-} */

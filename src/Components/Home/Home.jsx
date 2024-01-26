@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar";
 export default function Home(){
   return(
     < >
-    <div style={{margin:"-90px -40px"}}>
+    <div style={{margin:"-100px -10px"}}>
     <Navbar />
     <Container1 />
     <Container2 />
