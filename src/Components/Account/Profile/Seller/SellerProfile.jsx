@@ -27,7 +27,7 @@ function Profile() {
         <>
         <div style={{margin:"90px 40px"}}>
         <PageLayout />
-            <div className="row profile-details">
+            <div className="row profile-details" style={{border:'3px dashed #ffb12c'}}>
                 <div className="col-md-8">
                     <h2>Welcome {userData.full_name}!</h2>
                     <p><strong>Email:</strong> {userData.email}</p>
