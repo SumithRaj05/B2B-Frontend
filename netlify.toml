@@ -3,4 +3,4 @@ command = "npm run build"
 
 [[module]]
   path = "B2B-Frontend"
-  url = "https://github.com/yourusername/B2B-Frontend.git"
+  url = "https://github.com/SumithRaj05/B2B-Frontend.git"
