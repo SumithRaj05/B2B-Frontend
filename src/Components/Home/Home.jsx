@@ -8,13 +8,14 @@ import Join from "./components/Join";
 import Footer from "./components/Footer";
 import Post from "./components/Post";
 import Navbar from "./components/Navbar";
+import './home.css'
 // import Recommend2 from "./components/Recommend2";
 
 
 export default function Home(){
   return(
     < >
-    <div style={{margin:"-100px -10px"}}>
+    <div className="homep-main">
     <Navbar />
     <Container1 />
     <Container2 />

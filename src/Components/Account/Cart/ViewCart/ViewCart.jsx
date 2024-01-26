@@ -11,13 +11,11 @@ function ViewCart() {
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [totalAmount, setTotalAmount] = useState();
-  const [totalItems, setTotalItems] = useState();
 
   const fetchCartItems = async () => {
     const cartData = await GetItems();
     setCartItems(cartData.cart_items.product_details);
     setTotalAmount(cartData.cart_items.total_amount);
-    setTotalItems(cartData.cart_items.total_items);
     console.log(cartData.cart_items)
   };
 
@@ -62,7 +60,7 @@ function ViewCart() {
               <>
                 {cartItems.map((item, index) => (
                   
-                  <div className="row product-list border-bottom mb-3 cart-item-row" key={index}>
+                  <div className="row product-list border mb-1 cart-item-row" key={index}>
                   <div className="col-md-8 product-details">
                     <div className="d-flex align-items-center">
                     
@@ -113,7 +111,7 @@ function ViewCart() {
               <div className="total-amount text-md-right">
                 <h4>Total Amount</h4>
                 <h3>Total: <span className="total-amount-value">{totalAmount} rs</span></h3>
-                <p>Total Items: {totalItems}</p>
+                <p>Total Items: item.quantity</p>
               </div>
               <div className="place-order-button mt-3">
                 <button

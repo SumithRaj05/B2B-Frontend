@@ -2,3 +2,13 @@ body{
   background-color: white;
   
 }
+
+.homep-main{
+  margin:-100px -40px;
+}
+
+@media (max-width: 800px) {
+  .homep-main{
+    margin:-100px -10px;
+  }
+}
