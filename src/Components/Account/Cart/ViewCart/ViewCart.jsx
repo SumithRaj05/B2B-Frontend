@@ -113,7 +113,7 @@ function ViewCart() {
                 <h3>Total: <span className="total-amount-value">{totalAmount} rs</span></h3>
                 <p>Total Items: item.quantity</p>
               </div>
-              <div className="place-order-button mt-3">
+              <div className="place-order-button mt-3 d-flex flex-row-reverse">
                 <button
                   className="btn btn-lg btn-placeorder"
                   type="button"

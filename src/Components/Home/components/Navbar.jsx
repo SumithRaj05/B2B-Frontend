@@ -26,9 +26,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-light ${scrolled ? 'bg-white nav-bor' : 'bg-transparent'} fixed-top`}
-      style={{ transition: 'background 0.3s, color 0.3s' }}
-    >
+  className={`navbar navbar-expand-lg navbar-light ${scrolled ? 'bg-white nav-bor' : 'bg-transparent1'} fixed-top`}
+  style={{ transition: 'background 0.3s, color 0.3s' }}
+>
       <div className="container" style={{ maxWidth: '1100px' }}>
         <a className={`navbar-brand ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="#">
           <img
@@ -38,7 +38,6 @@ const Navbar = () => {
             className="d-inline-block align-top"
             alt="Logo"
           />
-          Bejiness.com
         </a>
         
         {/* Hamburger icon for mobile */}
@@ -58,18 +57,18 @@ const Navbar = () => {
         <div className={`collapse navbar-collapse justify-content-end ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="#">
+              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold mob-noscroll'}`} href="#">
                 Blog
               </a>
             </li>
             {/* <li className={`nav-item ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`}>|</li> */}
             <li className="nav-item">
-              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="/login">
+              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold mob-noscroll'}`} href="/login">
                 Login
               </a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold'}`} href="/signup">
+              <a className={`nav-link ${scrolled ? 'text-dark font-weight-bold' : 'text-white font-weight-bold mob-noscroll'}`} href="/signup">
                 Sign Up
               </a>
             </li>

@@ -1,13 +1,6 @@
-/* .profile-details {
-    margin-bottom: 30px;
-    border: solid 1px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #E8E8E8;
+.seller-profile-picture{
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 50%;
 }
-
-.product-card {
-    margin-bottom: 20px;
-}
- */
-

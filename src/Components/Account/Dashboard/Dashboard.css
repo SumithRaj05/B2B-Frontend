@@ -40,10 +40,10 @@
       flex-direction: row;
        align-items:center
 }
-
+ 
 @media (max-width: 800px) {
     .cargy-scroll-style{
-        width: 95vw;
+        width: 100%;
     ;
     }
 }

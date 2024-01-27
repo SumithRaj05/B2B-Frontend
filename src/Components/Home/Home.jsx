@@ -8,7 +8,7 @@ import Join from "./components/Join";
 import Footer from "./components/Footer";
 import Post from "./components/Post";
 import Navbar from "./components/Navbar";
-import './home.css'
+import './Home.css'
 // import Recommend2 from "./components/Recommend2";
 
 

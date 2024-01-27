@@ -47,7 +47,7 @@ function Login() {
     }
 
     return (
-        <div className="login-body">
+        <div className="login-body" style={{marginTop:"-90px"}}>
         <div className="container login-container">
        <img src="\src\assets\logo-bgremoved.png" alt="logo" style={{width:"80px"}} />
 

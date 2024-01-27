@@ -91,10 +91,10 @@ function Signup() {
     };
 
     return (
-        <div className="signup-body">
+        <div className="signup-body"  style={{marginTop:"-90px"}}>
         <div className="container signup-container">
         <img src="\src\assets\logo-bgremoved.png" alt="logo" style={{width:"80px"}} />
-        <form className="form-container mt-1 signup-form-container" onSubmit={signupSubmitHandler}>
+        <form className="form-container signup-form-container" onSubmit={signupSubmitHandler}>
             <h1>Signup</h1>
 
             <div className="mb-3">
