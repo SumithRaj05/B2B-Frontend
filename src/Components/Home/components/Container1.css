@@ -39,7 +39,7 @@
   
     /* Responsive Styles */
     @media (max-width: 768px) {
-      padding: 0px 0px; /* Adjust padding for smaller screens */
+      padding: 5px; /* Adjust padding for smaller screens */
     }
   }
   
