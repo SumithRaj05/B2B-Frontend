@@ -123,7 +123,7 @@ function ProductDetails() {
               </div>
               <div className="card d-flex prod-details-butadd">
                 <button
-                  onClick={addItemHandler} 
+                  onClick={addItemHandler}
                   className="btn addcart-prodetail"
                 >Add to Cart</button>
               </div>
@@ -149,7 +149,13 @@ function ProductDetails() {
                   {prices.map((price, index) => (
                     <tr key={index}>
                       <td>
-                        {price.quantityRange.min} - {price.quantityRange.max}
+                        {price.quantityRange.min ?
+                          price.quantityRange.min : 0
+                        }
+                        -
+                        {price.quantityRange.max ?
+                          price.quantityRange.max : "more"
+                        }
                       </td>
                       <td>{price.price}</td>
                     </tr>
