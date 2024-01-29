@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import { AddItem, GetCategory } from '../../ApiCallModules/Apis';
 import { URL } from '../../Auth/Auth';
 import DashCategory from './components/Dash_category';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SellerDashboard() {
+  const navigate = useNavigate()
   const [categoryTitle, setCategoryTitle] = useState('All');
   const [products, setProducts] = useState([]);
   const [hovered, setHovered] = useState(-1);
@@ -47,11 +49,11 @@ function SellerDashboard() {
   return (
     <>
       <PageLayout />
-        <DashCategory highlightButton={highlightButton}/>
-        
-        <div className="row cards-container d-flex mt-5">
-          {products.map((product, index) => (
-            <div className="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 d-flex dash-prod-card" key={index}>
+      <DashCategory highlightButton={highlightButton} />
+
+      <div className="row cards-container d-flex mt-5">
+        {products.map((product, index) => (
+          <div onClick={() => navigate("/product_details/" + product.product_id)} style={{cursor: "pointer"}} className="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-4 d-flex dash-prod-card" key={index}>
               <div
                 className={`card ${hovered === index ? 'shadow-lg' : 'shadow'} flex-grow-1`}
                 onMouseEnter={() => setHovered(index)}
@@ -67,7 +69,12 @@ function SellerDashboard() {
                 <div className={`card-body d-flex flex-column`}>
                   <h5 className="card-title">{product.product_name}</h5>
                   <p className="card-text">{product.description}</p>
-                  <p className="card-text">{product.prices[product.prices.length - 1].quantityRange.min} - {product.prices[product.prices.length - 1].quantityRange.max? product.prices[product.prices.length - 1].quantityRange.max: "more"}  <b>{product.prices[product.prices.length - 1].price}rs</b></p>
+                  <p className="card-text">
+                    {/* {product.prices[product.prices.length - 1].quantityRange.min} -
+                  {product.prices[product.prices.length - 1].quantityRange.max ?
+                    product.prices[product.prices.length - 1].quantityRange.max : "more"
+                  }   */}
+                    <b>{product.prices[product.prices.length - 1].price}rs</b></p>
                   {/* <div className="d-flex justify-content-between mt-auto">
                     <button
                       onClick={() => addItemHandler(product.product_id)}
@@ -92,10 +99,10 @@ function SellerDashboard() {
                   </div> */}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-     
+          </div>
+        ))}
+      </div>
+
     </>
   );
 }
