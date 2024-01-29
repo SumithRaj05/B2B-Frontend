@@ -34,13 +34,13 @@ function SellerDashboard() {
   };
 
   const highlightButton = (btn) => {
-    setCategoryTitle(btn.textContent);
+    setCategoryTitle(btn);
 
-    document.querySelectorAll('.dashboard-buttons .btn').forEach(function (button) {
-      button.classList.remove('active');
-    });
+    // document.querySelectorAll('.dashboard-buttons .btn').forEach(function (button) {
+    //   button.classList.remove('active');
+    // });
 
-    btn.classList.add('active');
+    // btn.classList.add('active');
   };
 
   return (

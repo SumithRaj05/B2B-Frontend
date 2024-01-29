@@ -39,13 +39,13 @@ function SpecsInput(props) {
                     <input
                         type="text"
                         className="form-control me-2"
-                        placeholder="Key"
+                        placeholder="Colour"
                         value={spec.key}
                         onChange={(e) => handleKeyChange(index, e.target.value)}                    />
                     <input
                         type="text"
                         className="form-control me-2"
-                        placeholder="Value"
+                        placeholder="Black, Red, Green"
                         value={spec.value}
                         onChange={(e) => handleValueChange(index, e.target.value)}
                     />

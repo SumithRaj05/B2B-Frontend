@@ -140,7 +140,7 @@ function AddProduct() {
                 <SpecsInput specsData={handleSpecsChange} />
 
                 <div className="mb-3">
-                    <label htmlFor="productImages" className="form-label">Product Images (up to 5)</label>
+                    <label htmlFor="productImages" className="form-label">Product Images</label>
                     <input
                         type="file"
                         name="image"

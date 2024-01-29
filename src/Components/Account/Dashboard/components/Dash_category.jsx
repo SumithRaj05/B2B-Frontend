@@ -106,7 +106,7 @@ const Dash_category = ({ highlightButton }) => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-      };
+  };
 
   const handleImageClick = (category) => {
     setSelectedCategory(category);
@@ -115,19 +115,24 @@ const Dash_category = ({ highlightButton }) => {
   const categoryItems = categories.map((category, index) => (
     <div key={category + index} style={{ marginRight: "20px" }}>
       <a
-        href={links[index]}
+        // href={links[index]}
         style={{
           textDecoration: "none",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          cursor: "pointer",
           borderBottom:
             selectedCategory === category ? "2px solid blue" : "none"
         }}
-        onClick={() => handleCategoryClick(category)}
+        onClick={() => {
+          handleCategoryClick(category)
+          highlightButton(category)
+
+        }}
       >
         <img
-        href={links[index]}
+          href={links[index]}
           src={imageSources[index]}
           alt=""
           style={{ height: "80px", width: "auto" }}
@@ -141,19 +146,19 @@ const Dash_category = ({ highlightButton }) => {
   return (
     <div className="App">
       <div className="cargy-scroll-style">
-        <button className="prev s-button" onClick={() => slide(-800)}>
+        <button className="prev s-button" onClick={() => slide(-100)}>
           <span className="material-symbols-outlined">chevron_left</span>
         </button>
         <ul
           className="s-ul"
           ref={scrl}
-          onClick={(e) => highlightButton(e.target)}
+          // onClick={(e) => highlightButton(e.target)}
           onScroll={scrollCheck}
           style={{ overflowX: "scroll", whiteSpace: "nowrap" }}
         >
           {categoryItems}
         </ul>
-        <button className="next s-button" onClick={() => slide(800)}>
+        <button className="next s-button" onClick={() => slide(100)}>
           <span className="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
