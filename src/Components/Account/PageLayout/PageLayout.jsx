@@ -34,7 +34,7 @@ export default function PageLayout({ children }) {
   style={{ transition: "background 0.3s, color 0.3s" }}
 >
   <div className="container" style={{ maxWidth: "1100px", display: 'flex',flexDirection: 'row',flexWrap: 'nowrap'}}>
-    <a className={`navbar-brand text-white font-weight-bold`} href="#">
+    <a href="/dashboard" className={`navbar-brand text-white font-weight-bold`} >
       <img
         src="/home/bejiness-logo.png"
         width="30"
@@ -42,7 +42,6 @@ export default function PageLayout({ children }) {
         className="d-inline-block align-top"
         alt="Logo"
       />
-      Bejiness.com
     </a>
 
     <div className="d-flex align-items-center search-bar-container">

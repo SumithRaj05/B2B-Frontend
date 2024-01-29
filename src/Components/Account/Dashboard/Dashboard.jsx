@@ -15,6 +15,7 @@ function SellerDashboard() {
       try {
         const data = await GetCategory(categoryTitle.toLowerCase());
         setProducts(data.products);
+        console.log(data.products);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }
@@ -66,8 +67,8 @@ function SellerDashboard() {
                 <div className={`card-body d-flex flex-column`}>
                   <h5 className="card-title">{product.product_name}</h5>
                   <p className="card-text">{product.description}</p>
-                  <p className="card-text">{product.category_type}</p>
-                  <div className="d-flex justify-content-between mt-auto">
+                  <p className="card-text">{product.prices[product.prices.length - 1].quantityRange.min} - {product.prices[product.prices.length - 1].quantityRange.max? product.prices[product.prices.length - 1].quantityRange.max: "more"}  <b>{product.prices[product.prices.length - 1].price}rs</b></p>
+                  {/* <div className="d-flex justify-content-between mt-auto">
                     <button
                       onClick={() => addItemHandler(product.product_id)}
                       className="btn btn-warning card-btn btn-icn-cent"
@@ -88,7 +89,7 @@ function SellerDashboard() {
                       >
                       </lord-icon>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
