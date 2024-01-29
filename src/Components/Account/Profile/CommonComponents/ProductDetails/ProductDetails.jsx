@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BsFillImageFill } from "react-icons/bs";
 import PageLayout from "../../../PageLayout/PageLayout";
-import { GetProduct } from "../../../../ApiCallModules/Apis";
+import { AddItem, GetProduct } from "../../../../ApiCallModules/Apis";
 import { URL } from "../../../../Auth/Auth";
 import "./ProductDetails.css";
 
@@ -35,6 +35,17 @@ function ProductDetails() {
     };
     fetchProduct();
   }, []);
+
+  const addItemHandler = () => {
+    const addItem = async () => {
+      try {
+        await AddItem(id.productId).then(() => alert("added"));
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+    addItem();
+  };
 
 
   const cardStyle = {
@@ -73,9 +84,8 @@ function ProductDetails() {
                   {images.map((image, index) => (
                     <div
                       key={index}
-                      className={`carousel-item ${
-                        index === 0 ? "active" : ""
-                      }`}
+                      className={`carousel-item ${index === 0 ? "active" : ""
+                        }`}
                     >
                       <img
                         src={URL + image}
@@ -112,38 +122,40 @@ function ProductDetails() {
                 </button>
               </div>
               <div className="card d-flex prod-details-butadd">
-              <div className="btn addcart-prodetail">Add to Cart</div>
-              <div className="btn buy-prodetail">Buy Now</div>
+                <button
+                  onClick={addItemHandler} 
+                  className="btn addcart-prodetail"
+                >Add to Cart</button>
               </div>
-              
+
             </div>
             <div className="col-md-6">
               <h2 className="mt-2">
                 <b>{product.product_name}</b>
               </h2>
-                      <hr />
+              <hr />
               <h5>Description</h5>
               <p className="lead">{product.description}</p>
 
               <h5>Pricings</h5>
-<table className="table table-divider">
-  <thead>
-    <tr>
-      <th>Quantity Range</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody >
-    {prices.map((price, index) => (
-      <tr key={index}>
-        <td>
-          {price.quantityRange.min} - {price.quantityRange.max}
-        </td>
-        <td>{price.price}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+              <table className="table table-divider">
+                <thead>
+                  <tr>
+                    <th>Quantity Range</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  {prices.map((price, index) => (
+                    <tr key={index}>
+                      <td>
+                        {price.quantityRange.min} - {price.quantityRange.max}
+                      </td>
+                      <td>{price.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
 
 
               <h5>Specifications</h5>

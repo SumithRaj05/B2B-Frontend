@@ -25,16 +25,16 @@ function SellerDashboard() {
     fetchProduct();
   }, [categoryTitle]);
 
-  const addItemHandler = (productId) => {
-    const addItem = async () => {
-      try {
-        await AddItem(productId).then(() => alert("added"));
-      } catch (error) {
-        console.error("Error occurred while fetching user data:", error);
-      }
-    };
-    addItem();
-  };
+  // const addItemHandler = (productId) => {
+  //   const addItem = async () => {
+  //     try {
+  //       await AddItem(productId).then(() => alert("added"));
+  //     } catch (error) {
+  //       console.error("Error occurred while fetching user data:", error);
+  //     }
+  //   };
+  //   addItem();
+  // };
 
   const highlightButton = (btn) => {
     setCategoryTitle(btn);
