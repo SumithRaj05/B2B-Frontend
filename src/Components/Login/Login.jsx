@@ -49,7 +49,7 @@ function Login() {
     return (
         <div className="login-body" style={{marginTop:"-90px"}}>
         <div className="container login-container">
-       <img src="src/assets/logo-bgremoved.png" alt="logo" style={{width:"80px"}} />
+       <img src="/home/bejiness-logo.png" alt="logo" style={{width:"80px"}} />
 
             <form className="form-container mt-2 login-form-container" onSubmit={loginSubmitHandler}>
                 <h1>Login</h1>
