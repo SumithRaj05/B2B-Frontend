@@ -32,9 +32,9 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-          {
-            (hasToken)?(
-                  <>
+        {
+          (hasToken) ? (
+            <>
               <Route path="/dashboard" element={<SellerDashboard />} />
               <Route path="/seller_profile" element={<Profile />} />
               <Route path="/products" element={<SellerProducts />} />
@@ -47,13 +47,13 @@ function App() {
               <Route path="/payment" element={<OrderPayment />} />
               <Route path="/contactus" element={<ContactUs />} />
               <Route path="/AboutUs" element={<AboutUs />} />
-              </>
-              ):(
-            
-          
+            </>
+          ) : (
+
+
             <Route path="/*" element={<Navigate to="/home" />} />)
-              }
-        
+        }
+
 
       </Routes>
     </>
