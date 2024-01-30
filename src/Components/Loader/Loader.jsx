@@ -10,10 +10,10 @@ const Loader = () => {
           <CirclesWithBar
             height="100"
             width="100"
-            color="#4fa94d"
-            outerCircleColor="#4fa94d"
-            innerCircleColor="#4fa94d"
-            barColor="#4fa94d"
+            color="#E7A12A"
+            outerCircleColor="#E7A12A"
+            innerCircleColor="#E7A12A"
+            barColor="#E7A12A"
             ariaLabel="circles-with-bar-loading"
             wrapperStyle={{}}
             wrapperClass=""
