@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Login.css';
 import { URL } from '../Auth/Auth';
 import { useAuth } from "../Auth/AuthContext";
+import Loader from "../Loader/Loader"
 
 function Login() {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Login() {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlePhoneNumberChange = (event) => {
         setPhoneNumber(event.target.value);
@@ -20,6 +22,7 @@ function Login() {
     };
 
     const loginSubmitHandler = async (event) => {
+        setIsLoading(true)
         event.preventDefault();
         const userData = {
             phone_number: phoneNumber,
@@ -41,7 +44,8 @@ function Login() {
                 navigate('/dashboard');
             })
         }).catch(error => {
-            console.error('Error logging in user:', error.message);
+            setIsLoading(false)
+            alert('Error logging in user:', error.message);
             return <p>{error.message}</p>
         });
     }
@@ -51,6 +55,10 @@ function Login() {
         <div className="container login-container">
        <img src="/home/bejiness-logo.png" alt="logo" style={{width:"80px"}} />
 
+            {
+            isLoading?
+            <Loader />
+            :
             <form className="form-container mt-2 login-form-container" onSubmit={loginSubmitHandler}>
                 <h1>Login</h1>
 
@@ -84,6 +92,7 @@ function Login() {
                     <Link to="/signup" className="mt-2 d-block text-center">Don't have an account?</Link>
                 </div>
             </form>
+            }
         </div>
         </div>
     )

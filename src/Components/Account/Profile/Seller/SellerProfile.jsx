@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'; // Import the Edit icon
+import { CgProfile } from "react-icons/cg";
 import { TbMoodEmpty } from 'react-icons/tb';
 import PageLayout from '../../PageLayout/PageLayout';
 import { GetUser } from '../../../ApiCallModules/Apis';
@@ -24,6 +25,10 @@ function Profile() {
         fetchData();
     }, []);
 
+    const UploadImageHandler = () => {
+        console.log("uploaded");
+    }
+
     // const handleFileChange = (e) => {
         // const file = e.target.files[0];
         // setSelectedFile(file);
@@ -41,12 +46,14 @@ function Profile() {
                     <h2>Welcome {userData.full_name}!</h2>
                     {/* Display profile picture */}
                     <div className="profile-picture-container">
-                        <img
+                        {/* <img
                             src={userData.profile_picture || defaultProfilePicture}
                             alt="Profile"
                             className="seller-profile-picture mt-1"
-                        />
-                        <div className="edit-profile-icon">
+                        /> */}
+                        <CgProfile size={102} />
+
+                        <div onClick={UploadImageHandler} className="edit-profile-icon">
                             <FaEdit />
                             <span>Edit</span>
                         </div>
