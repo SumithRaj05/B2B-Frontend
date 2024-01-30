@@ -19,6 +19,8 @@ import OrderPayment from './Components/Account/Cart/OrderPayment/OrderPayment'
 import Loader from './Components/Loader/Loader'
 
 import { useAuth } from './Components/Auth/AuthContext'
+import ContactUs from './Components/Home/pages/contact/contactus'
+import AboutUs from './Components/Home/pages/about/AboutUs'
 
 function App() {
   const { hasToken } = useAuth();
@@ -47,6 +49,8 @@ function App() {
               <Route path="/order_details/:orderId" element={<OrderDetails />} />
               <Route path="/view_cart" element={<ViewCart />} />
               <Route path="/payment" element={<OrderPayment />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
               </>
               ):(
             

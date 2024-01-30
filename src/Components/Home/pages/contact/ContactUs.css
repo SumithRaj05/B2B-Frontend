@@ -1,0 +1,41 @@
+
+.cont-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.cont-form-group {
+    margin-bottom: 20px;
+}
+.cont-form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.cont-form-group input, .cont-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+.cont-form-group button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.cont-form-group button:hover {
+    background-color: #0056b3;
+}
+
+.form-control:focus {
+    border-color: #eef840;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(243, 240, 71, 0.6);
+  }
+  
+  .form-check-input:checked {
+    background-color: #fdd40d;
+    border-color: #fdd90d;
+  }
