@@ -1,5 +1,5 @@
 import React from 'react';
-import ContactUs from '../pages/contact/contactus';
+import ContactUs from '../pages/contact/ContactUs';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {

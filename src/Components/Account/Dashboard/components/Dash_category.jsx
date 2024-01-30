@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import '../Dashboard.css'
 
 const Dash_category = ({ highlightButton }) => {
   const categories = [

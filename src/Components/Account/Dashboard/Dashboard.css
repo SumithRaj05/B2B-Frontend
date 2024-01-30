@@ -1,11 +1,9 @@
-
-
 .dashboard-buttons {
     text-align: center;
     margin-top: 10px;
 }
 
-.dashboard-btn{
+.dashboard-btn {
     background-color: #ffffff;
     color: blue;
     transition: 0.5s;
@@ -16,34 +14,34 @@
 }
 
 
-.btn-icn-cent{
+.btn-icn-cent {
     display: flex;
     align-items: center;
 }
 
-.dash-prod-card{
+.dash-prod-card {
     max-width: 200px;
 }
 
 @media (max-width: 800px) {
-    .dash-prod-card{
+    .dash-prod-card {
         max-width: 180px;
         padding: 0px;
         margin-left: 12px;
     }
 }
 
-.cargy-scroll-style{
-    width: 90vw;
-     background: #bcffd8;
-      display:flex;
-      flex-direction: row;
-       align-items:center
+.cargy-scroll-style {
+    width: 100%;
+    background: #bcffd8;
+    display: flex;
+    flex-direction: row;
+    align-items: center
 }
- 
+
 @media (max-width: 800px) {
-    .cargy-scroll-style{
+    .cargy-scroll-style {
         width: 100%;
-    ;
+        ;
     }
 }

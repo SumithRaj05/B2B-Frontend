@@ -16,10 +16,8 @@ import BuyerProfile from './Components/Account/Profile/Buyer/BuyerProfile'
 import OrderDetails from './Components/Account/Profile/CommonComponents/OrderDetails/OrderDetails'
 import OrderPayment from './Components/Account/Cart/OrderPayment/OrderPayment'
 
-import Loader from './Components/Loader/Loader'
-
 import { useAuth } from './Components/Auth/AuthContext'
-import ContactUs from './Components/Home/pages/contact/contactus'
+import ContactUs from './Components/Home/pages/contact/ContactUs'
 import AboutUs from './Components/Home/pages/about/AboutUs'
 
 function App() {
@@ -33,8 +31,6 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-
-        <Route path="/loader" element={<Loader />} />
 
           {
             (hasToken)?(
