@@ -1,7 +1,6 @@
-.loader-bg{
-    opacity: 0.2;
-}
+
 .loader{
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }

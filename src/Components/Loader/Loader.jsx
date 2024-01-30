@@ -5,7 +5,6 @@ import './Loader.css'
 const Loader = () => {
   return (
     <>
-      <div className='loader-bg'></div>
         <div className='loader'>
           <CirclesWithBar
             height="100"
