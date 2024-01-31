@@ -129,14 +129,13 @@ const Dash_category = ({ highlightButton }) => {
         onClick={() => {
           handleCategoryClick(category)
           highlightButton(category)
-
         }}
       >
         <img
           href={links[index]}
           src={imageSources[index]}
           alt=""
-          style={{ height: "80px", width: "auto" }}
+          style={{ height: "60px", width: "auto" }}
           onClick={() => handleImageClick(category)}
         />
         <p>{category}</p>
@@ -147,7 +146,7 @@ const Dash_category = ({ highlightButton }) => {
   return (
     <div className="App">
       <div className="cargy-scroll-style">
-        <button className="prev s-button" onClick={() => slide(-100)}>
+        <button className="prev s-button" onClick={() => slide(-150)}>
           <span className="material-symbols-outlined">chevron_left</span>
         </button>
         <ul
@@ -159,7 +158,7 @@ const Dash_category = ({ highlightButton }) => {
         >
           {categoryItems}
         </ul>
-        <button className="next s-button" onClick={() => slide(100)}>
+        <button className="next s-button" onClick={() => slide(150)}>
           <span className="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
