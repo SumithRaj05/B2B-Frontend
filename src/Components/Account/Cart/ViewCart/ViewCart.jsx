@@ -26,6 +26,12 @@ function ViewCart() {
   };
 
   useEffect(() => {
+    cartItems.map((item) => {
+      return setQuantity(quantity + item.quantity)
+    })
+  }, [])
+
+  useEffect(() => {
     fetchCartItems();
   }, []);
 
@@ -123,7 +129,7 @@ function ViewCart() {
               <div className="total-amount text-md-right">
                 <h4>Total Amount</h4>
                 <h3>Total: <span className="total-amount-value">{totalAmount} rs</span></h3>
-                <p>Total Items: item.quantity</p>
+                <p>Total Items: {quantity}</p>
               </div>
               <div className="place-order-button mt-3 d-flex flex-row-reverse">
                 <button

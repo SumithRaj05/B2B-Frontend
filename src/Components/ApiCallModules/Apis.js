@@ -91,8 +91,7 @@ export const AddItem = async (productId) => {
                 'token': token
             },
             body: JSON.stringify({
-                product_id: productId,
-                quantity: 1
+                product_id: productId
             })
         });
 
