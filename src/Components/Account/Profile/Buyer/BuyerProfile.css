@@ -1,3 +1,17 @@
-.order-card-body{
+/* .order-card-body{
     overflow: scroll;
+} */
+
+.order-card-body2 {
+    width: inherit;
+}
+
+.orderlist-head {
+    padding: .5rem 1rem;
+    font-size: xx-large;
+
+}
+
+.buyer-profil{
+    border: 2px dashed gold;
 }
