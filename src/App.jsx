@@ -20,6 +20,7 @@ import { useAuth } from './Components/Auth/AuthContext'
 import ContactUs from './Components/Home/pages/contact/ContactUs'
 import AboutUs from './Components/Home/pages/about/AboutUs'
 import Notification from './Components/Account/Profile/Seller/Notification/Notification'
+import NotificationDetails from './Components/Account/Profile/Seller/Notification/NotificationDetails/NotificationDetails'
 
 function App() {
   const { hasToken } = useAuth();
@@ -49,7 +50,8 @@ function App() {
               <Route path="/contactus" element={<ContactUs />} />
               <Route path="/AboutUs" element={<AboutUs />} />
               <Route path="/notifications" element={<Notification />} />
-              
+              <Route path="/notificationdetails/:id" element={<NotificationDetails />} />
+
             </>
           ) : (
 
