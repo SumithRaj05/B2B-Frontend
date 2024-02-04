@@ -24,12 +24,16 @@ function ViewCart() {
       setIsLoading(false)
     })
   };
-
   useEffect(() => {
-    cartItems.map((item) => {
-      return setQuantity(quantity + item.quantity)
-    })
-  }, [])
+    // Use the reduce function to sum up the quantities of all items
+    const totalQuantity = cartItems.reduce((accumulator, item) => {
+      return accumulator + item.quantity;
+    }, 0);
+  
+    // Set the total quantity using the setQuantity function
+    setQuantity(totalQuantity);
+  }, [cartItems]);
+  
 
   useEffect(() => {
     fetchCartItems();

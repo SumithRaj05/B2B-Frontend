@@ -73,7 +73,7 @@ export default function OrderPayment() {
     }
     return (
         <>
-            <button onClick={paymenthandler}>Pay</button>
+            <button onClick={() => paymenthandler}>Pay</button>
         </>
     )
 }
